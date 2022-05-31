@@ -1,4 +1,5 @@
 import parking.Parking
+import parking.ParkingSpace
 import vehicle.Vehicle
 import vehicle.VehicleType
 import java.util.*
@@ -28,6 +29,7 @@ fun main(args: Array<String>) {
 
     val parking = Parking(mutableSetOf())
 
+
     val vehiclesArray = arrayOf(
         car, moto, bus, miniBus, carTwo, motoTwo, busTwo, miniBusTwo, carThree, motoFour,
         carFour, motoFive, busFive, miniBusThree, carFive, motoThree, busThree, miniBusFour,
@@ -41,4 +43,23 @@ fun main(args: Array<String>) {
             println("Sorry, the check-in failed")
         }
     }
+    /*
+    * Exercise 10
+    *
+    * */
+
+    val parkingSpace = ParkingSpace(moto, parking)
+    parkingSpace.checkOutVehicle(moto.plate, { fee ->
+        // onSuccess
+        println("Your fee is $$fee. Come back soon.")
+    }, {
+        // onError
+        println("Sorry, the check-out failed")
+    })
+
+    println("exercise 12:")
+    parking.listVehicle()
+
+
 }
+
