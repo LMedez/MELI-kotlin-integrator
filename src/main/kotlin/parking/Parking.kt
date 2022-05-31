@@ -19,4 +19,10 @@ data class Parking(val vehicles: MutableSet<Vehicle>) {
             false
         else vehicles.add(vehicle)
 
+// listVehicle() displays a list of all parked vehicle plates
+    fun listVehicle(){
+        vehicles.forEach {
+            println(it.plate)
+        }
+    }
 }
