@@ -34,7 +34,7 @@ fun main(args: Array<String>) {
         car, moto, bus, miniBus, carTwo, motoTwo, busTwo, miniBusTwo, carThree, motoFour,
         carFour, motoFive, busFive, miniBusThree, carFive, motoThree, busThree, miniBusFour,
         carSix, motoSix, car)
-
+    println("exercise 6:")
     for(i in 1..21) {
         val vehicleIn = parking.addVehicle(vehiclesArray[i-1])
         if (vehicleIn) {
@@ -47,7 +47,7 @@ fun main(args: Array<String>) {
     * Exercise 10
     *
     * */
-
+    println("exercise 7,8,9,10")
     val parkingSpace = ParkingSpace(moto, parking)
     parkingSpace.checkOutVehicle(moto.plate, { fee ->
         // onSuccess
@@ -56,9 +56,11 @@ fun main(args: Array<String>) {
         // onError
         println("Sorry, the check-out failed")
     })
-
+    println("exercise 11:")
+    parking.showFee()
     println("exercise 12:")
     parking.listVehicle()
+
 
 
 }
