@@ -37,6 +37,9 @@ fun main(args: Array<String>) {
         // onError
         println("Sorry, the check-out failed")
     })
+
+    println("exercise 12:")
+    parking.listVehicle()
 }
 
 fun checkIn(vehicle: Vehicle) {
