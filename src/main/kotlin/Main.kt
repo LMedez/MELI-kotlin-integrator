@@ -1,4 +1,5 @@
 import parking.Parking
+import parking.ParkingSpace
 import vehicle.Vehicle
 import vehicle.VehicleType
 import java.util.*
@@ -22,7 +23,20 @@ fun main(args: Array<String>) {
     val car2 = Vehicle("AAC667C", VehicleType.AUTO, Calendar.getInstance(), "DISCOUNT_CARD_001")
     val isCardInserted = parking.vehicles.add(car2)
     println(isCardInserted)
-    
+
+    /*
+    * Exercise 10
+    *
+    * */
+
+    val parkingSpace = ParkingSpace(moto, parking)
+    parkingSpace.checkOutVehicle(moto.plate, { fee ->
+        // onSuccess
+        println("Your fee is $$fee. Come back soon.")
+    }, {
+        // onError
+        println("Sorry, the check-out failed")
+    })
 }
 
 fun checkIn(vehicle: Vehicle) {
