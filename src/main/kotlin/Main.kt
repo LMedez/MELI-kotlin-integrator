@@ -22,8 +22,7 @@ fun main(args: Array<String>) {
     val car2 = Vehicle("AAC667C", VehicleType.AUTO, Calendar.getInstance(), "DISCOUNT_CARD_001")
     val isCardInserted = parking.vehicles.add(car2)
     println(isCardInserted)
-
-
+    
 }
 
 fun checkIn(vehicle: Vehicle) {
