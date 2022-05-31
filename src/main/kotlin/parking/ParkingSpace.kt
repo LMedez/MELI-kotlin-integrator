@@ -10,6 +10,11 @@ data class ParkingSpace(var vehicle: Vehicle, val parking: Parking) {
         const val MINUTES_IN_MILLISECONDS = 60_000
     }
 
+    private val twoHourInMilliseconds = MINUTES_IN_MILLISECONDS * 120
+    private val pricePerFraction = 5
+    private val fifteenMinutesInMilliseconds = MINUTES_IN_MILLISECONDS * 15
+    private val discountRate = 15
+
     /*
     * Exercise 6
     *
@@ -18,23 +23,27 @@ data class ParkingSpace(var vehicle: Vehicle, val parking: Parking) {
         val vehicle = parking.vehicles.firstOrNull { it.plate == plate }
         vehicle?.let {
             parking.vehicles.remove(it)
-            onSuccess(1)
+            onSuccess(calculateFee(it.vehicleType,parkedTime.toInt(),it.discountCard?.let { true } ?: false))
         }?: onError()
     }
 
     /*
-    * Function calculateFee returns the price to be paid by the driver
+    * Function calculateFee returns the price to be paid by the driver (exercises 8, 9)
     *
     * */
-    fun calculateFee(type: VehicleType, parkedTime:Int):Int{
-        val TWO_HOUR_IN_MILLISECONDS = MINUTES_IN_MILLISECONDS * 120
-        val PRICE_FRACTION = 5
-        val fraction = parkedTime - TWO_HOUR_IN_MILLISECONDS
-        return when {
-            fraction <= 0 -> type.tarifa
-            fraction > 0 -> type.tarifa + ceil(fraction/15.0*PRICE_FRACTION).toInt()
-            else -> 0
+    fun calculateFee(type: VehicleType, parkedTime:Int, hasDiscountCard:Boolean):Int{
+        val fractionTime = parkedTime - twoHourInMilliseconds
+        var priceToPay = 0
+        when {
+            fractionTime <= 0 -> priceToPay = type.tarifa
+            fractionTime > 0 -> {
+                priceToPay = (type.tarifa + ceil(fractionTime.toDouble() / fifteenMinutesInMilliseconds.toDouble()) * pricePerFraction).toInt()
+            }
         }
+        if (hasDiscountCard) {
+            priceToPay -= priceToPay*discountRate/100
+        }
+        return priceToPay
     }
 
     val parkedTime: Long
