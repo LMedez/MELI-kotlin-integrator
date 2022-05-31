@@ -21,9 +21,11 @@ data class ParkingSpace(var vehicle: Vehicle, val parking: Parking) {
     * */
     fun checkOutVehicle(plate: String, onSuccess: (Int) -> Unit, onError: () -> Unit) {
         val vehicle = parking.vehicles.firstOrNull { it.plate == plate }
+
         vehicle?.let {
-            parking.vehicles.remove(it)
-            onSuccess(calculateFee(it.vehicleType,parkedTime.toInt(),it.discountCard?.let { true } ?: false))
+            val fee = calculateFee(it.vehicleType,parkedTime.toInt(),it.discountCard?.let { true } ?: false)
+            parking.removeVehicle(it, fee)
+            onSuccess(fee)
         }?: onError()
     }
 
