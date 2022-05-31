@@ -14,6 +14,18 @@ data class Parking(val vehicles: MutableSet<Vehicle>) {
         const val LIMIT_OF_CARS = 20
     }
 
+    var vehiclesRemovedAndTotalFee: Pair<Int, Int> = Pair(0, 0)
+
+    fun removeVehicle(vehicle: Vehicle, fee: Int) {
+        val newPair = Pair(vehiclesRemovedAndTotalFee.first + 1, vehiclesRemovedAndTotalFee.second + fee)
+        vehiclesRemovedAndTotalFee = newPair
+        vehicles.remove(vehicle)
+    }
+
+    fun showFee() {
+        println("${vehiclesRemovedAndTotalFee.first} vehicles have checked out and have earnings of ${vehiclesRemovedAndTotalFee.second}")
+    }
+
     fun addVehicle(vehicle: Vehicle): Boolean =
         if (vehicles.size >= LIMIT_OF_CARS)
             false
