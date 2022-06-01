@@ -5,27 +5,27 @@ import vehicle.VehicleType
 import java.util.*
 
 fun main(args: Array<String>) {
-    val car = Vehicle("AAC667C", VehicleType.AUTO, Calendar.getInstance(), "DISCOUNT_CARD_001")
-    val moto = Vehicle("BBC467N", VehicleType.MOTO, Calendar.getInstance())
-    val bus = Vehicle("CCA677M", VehicleType.BUS, Calendar.getInstance())
-    val miniBus = Vehicle("PPA617T", VehicleType.MINIBUS, Calendar.getInstance(), "DISCOUNT_CARD_002")
-    val carTwo = Vehicle("ROP569K", VehicleType.AUTO, Calendar.getInstance())
-    val motoTwo = Vehicle("BBC468N", VehicleType.MOTO, Calendar.getInstance())
-    val busTwo = Vehicle("CCA678M", VehicleType.BUS, Calendar.getInstance())
-    val miniBusTwo = Vehicle("PPA618T", VehicleType.MINIBUS, Calendar.getInstance(), "DISCOUNT_CARD_002")
-    val carThree = Vehicle("AAC669C", VehicleType.AUTO, Calendar.getInstance(), "DISCOUNT_CARD_001")
-    val motoFour = Vehicle("BBC469N", VehicleType.MOTO, Calendar.getInstance())
+    val car = Vehicle("AAC667C", VehicleType.AUTO, "DISCOUNT_CARD_001")
+    val moto = Vehicle("BBC467N", VehicleType.MOTO)
+    val bus = Vehicle("CCA677M", VehicleType.BUS)
+    val miniBus = Vehicle("PPA617T", VehicleType.MINIBUS, "DISCOUNT_CARD_002")
+    val carTwo = Vehicle("ROP569K", VehicleType.AUTO)
+    val motoTwo = Vehicle("BBC468N", VehicleType.MOTO)
+    val busTwo = Vehicle("CCA678M", VehicleType.BUS)
+    val miniBusTwo = Vehicle("PPA618T", VehicleType.MINIBUS, "DISCOUNT_CARD_002")
+    val carThree = Vehicle("AAC669C", VehicleType.AUTO, "DISCOUNT_CARD_001")
+    val motoFour = Vehicle("BBC469N", VehicleType.MOTO)
 
-    val carFour = Vehicle("AAC667O", VehicleType.AUTO, Calendar.getInstance(), "DISCOUNT_CARD_001")
-    val motoFive = Vehicle("BBC467U", VehicleType.MOTO, Calendar.getInstance())
-    val busFive = Vehicle("CCA677I", VehicleType.BUS, Calendar.getInstance())
-    val miniBusThree = Vehicle("PPA617K", VehicleType.MINIBUS, Calendar.getInstance(), "DISCOUNT_CARD_002")
-    val carFive = Vehicle("BBC468T", VehicleType.AUTO, Calendar.getInstance())
-    val motoThree = Vehicle("BBC468R", VehicleType.MOTO, Calendar.getInstance())
-    val busThree = Vehicle("CCA678E", VehicleType.BUS, Calendar.getInstance())
-    val miniBusFour = Vehicle("PPA618W", VehicleType.MINIBUS, Calendar.getInstance(), "DISCOUNT_CARD_002")
-    val carSix = Vehicle("AAC669Q", VehicleType.AUTO, Calendar.getInstance(), "DISCOUNT_CARD_001")
-    val motoSix = Vehicle("BBC469A", VehicleType.MOTO, Calendar.getInstance())
+    val carFour = Vehicle("AAC667O", VehicleType.AUTO, "DISCOUNT_CARD_001")
+    val motoFive = Vehicle("BBC467U", VehicleType.MOTO)
+    val busFive = Vehicle("CCA677I", VehicleType.BUS)
+    val miniBusThree = Vehicle("PPA617K", VehicleType.MINIBUS, "DISCOUNT_CARD_002")
+    val carFive = Vehicle("BBC468T", VehicleType.AUTO)
+    val motoThree = Vehicle("BBC468R", VehicleType.MOTO)
+    val busThree = Vehicle("CCA678E", VehicleType.BUS)
+    val miniBusFour = Vehicle("PPA618W", VehicleType.MINIBUS, "DISCOUNT_CARD_002")
+    val carSix = Vehicle("AAC669Q", VehicleType.AUTO, "DISCOUNT_CARD_001")
+    val motoSix = Vehicle("BBC469A", VehicleType.MOTO)
 
     val parking = Parking(mutableSetOf())
 
@@ -48,7 +48,7 @@ fun main(args: Array<String>) {
     *
     * */
     println("exercise 7,8,9,10")
-    val parkingSpace = ParkingSpace(moto, parking)
+    val parkingSpace = ParkingSpace(moto, Calendar.getInstance(), parking)
     parkingSpace.checkOutVehicle(moto.plate, { fee ->
         // onSuccess
         println("Your fee is $$fee. Come back soon.")
