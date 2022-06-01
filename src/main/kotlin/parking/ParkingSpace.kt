@@ -5,7 +5,7 @@ import vehicle.VehicleType
 import java.util.*
 import kotlin.math.ceil
 
-data class ParkingSpace(var vehicle: Vehicle, val parking: Parking) {
+data class ParkingSpace(var vehicle: Vehicle, val checkInTime: Calendar, val parking: Parking,) {
     companion object {
         const val MINUTES_IN_MILLISECONDS = 60_000
     }
@@ -35,11 +35,10 @@ data class ParkingSpace(var vehicle: Vehicle, val parking: Parking) {
     * */
     fun calculateFee(type: VehicleType, parkedTime:Int, hasDiscountCard:Boolean):Int{
         val fractionTime = parkedTime - twoHourInMilliseconds
-        var priceToPay = 0
-        when {
-            fractionTime <= 0 -> priceToPay = type.tarifa
-            fractionTime > 0 -> {
-                priceToPay = (type.tarifa + ceil(fractionTime.toDouble() / fifteenMinutesInMilliseconds.toDouble()) * pricePerFraction).toInt()
+        var priceToPay = when {
+            fractionTime <= 0 -> type.tarifa
+            else -> {
+                (type.tarifa + ceil(fractionTime.toDouble() / fifteenMinutesInMilliseconds.toDouble()) * pricePerFraction).toInt()
             }
         }
         if (hasDiscountCard) {
@@ -49,5 +48,5 @@ data class ParkingSpace(var vehicle: Vehicle, val parking: Parking) {
     }
 
     val parkedTime: Long
-        get() = (Calendar.getInstance().timeInMillis - vehicle.checkInTime.timeInMillis) / MINUTES_IN_MILLISECONDS
+        get() = (Calendar.getInstance().timeInMillis - checkInTime.timeInMillis) / MINUTES_IN_MILLISECONDS
 }

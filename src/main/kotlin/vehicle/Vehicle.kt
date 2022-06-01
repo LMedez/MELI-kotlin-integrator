@@ -1,10 +1,8 @@
 package vehicle
 
-import java.util.Calendar
-
 data class Vehicle(
     val plate: String, val vehicleType: VehicleType,
-    val checkInTime: Calendar, val discountCard: String? = null
+    val discountCard: String? = null
 ) {
     override fun equals(other: Any?): Boolean {
         if (other is Vehicle) {
